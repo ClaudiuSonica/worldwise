@@ -1,11 +1,12 @@
 import "./AppLayout.scss";
-import PageNav from "../../molecules/pageNav/PageNav";
+import Sidebar from "../../organisms/sidebar/Sidebar";
+import Map from "../../organisms/map/Map";
 
 const AppLayout = () => {
   return (
-    <div>
-      <PageNav />
-      <h1>AppLayout</h1>
+    <div className="app">
+      <Sidebar />
+      <Map />
     </div>
   );
 }

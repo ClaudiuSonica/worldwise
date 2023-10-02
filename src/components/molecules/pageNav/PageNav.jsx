@@ -3,11 +3,8 @@ import "./PageNav.scss";
 
 const PageNav = () => {
   return (
-    <nav className="nav">
+    <nav className="page__nav">
       <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
         <li>
           <NavLink to="/pricing">Pricing</NavLink>
         </li>

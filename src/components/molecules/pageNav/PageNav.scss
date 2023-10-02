@@ -1,9 +1,36 @@
 @import "../../../scss/variables";
 
-.nav {
+.page__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   ul {
-    display: flex;
-    justify-content: space-around;
     list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
   }
+
+  & a:link,
+  & a:visited {
+    text-decoration: none;
+    color: $colorLight2;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  & a:hover,
+  & a:active {
+    color: $colorBrand2;
+  }
+}
+
+a.ctaLink:link,
+a.ctaLink:visited {
+  background-color: $colorBrand2;
+  color: $colorDark0;
+  padding: 0.8rem 2rem;
+  border-radius: 7px;
 }

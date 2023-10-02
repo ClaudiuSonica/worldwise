@@ -8,6 +8,16 @@ html {
   font-size: 62.5%;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
 body {
   font-family: $fontMain;
   color: $colorLight2;
@@ -35,4 +45,14 @@ textarea {
 input:focus {
   outline: none;
   background-color: #fff;
+}
+
+textarea:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+button {
+  cursor: pointer;
+  border: none;
 }

@@ -1,1 +1,14 @@
 @import "./scss/variables";
+
+.cta:link,
+.cta:visited {
+  display: inline-block;
+  background-color: $colorBrand2;
+  color: $colorDark1;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  border-radius: 5px;
+}

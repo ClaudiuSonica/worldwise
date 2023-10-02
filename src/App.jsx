@@ -4,6 +4,7 @@ import Pricing from "./components/pages/pricing/Pricing";
 import Homepage from "./components/pages/homepage/Homepage";
 import PageNotFound from "./components/pages/pageNotFound/PageNotFound";
 import AppLayout from "./components/pages/appLayout/AppLayout";
+import Login from "./components/pages/login/Login";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="app" element={<AppLayout />} />
         <Route path="product" element={<Product />} />
         <Route path="pricing" element={<Pricing />} />
+        <Route path="login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

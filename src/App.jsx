@@ -9,7 +9,7 @@ import AppLayout from "./components/pages/appLayout/AppLayout";
 import Login from "./components/pages/login/Login";
 import CityList from "./components/molecules/cityList/CityList";
 import CountriesList from "./components/molecules/countriesList/CountriesList";
-
+import City from "./components/molecules/city/City";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -50,7 +50,11 @@ const App = () => {
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
-          <Route path="countries" element={<CountriesList cities={cities} isLoading={isLoading} />} />
+          <Route path="cities/:id" element={<City />} />
+          <Route
+            path="countries"
+            element={<CountriesList cities={cities} isLoading={isLoading} />}
+          />
           <Route path="form" element={<p>Form</p>} />
         </Route>
         <Route path="*" element={<PageNotFound />} />

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import "./City.scss";
 
 // import BackButton from "../../atoms/backButton/BackButton";
@@ -13,6 +13,12 @@ import "./City.scss";
 
 const City = () => {
   const { id } = useParams();
+
+  // const [searchParams, setSearchParams] = useSearchParams();
+
+  // const lat = searchParams.get("lat");
+  // const lng = searchParams.get("lng");
+
 
   return <div>City {id}</div>;
 

@@ -21,7 +21,7 @@ const CountriesList = ({ cities, isLoading }) => {
   return (
     <ul className="countryList">
       {countries.map((country) => (
-        <CountryItem key={country.id} country={country} />
+        <CountryItem key={country.country} country={country} />
       ))}
     </ul>
   );

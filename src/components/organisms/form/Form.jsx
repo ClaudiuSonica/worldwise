@@ -4,16 +4,21 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../atoms/button/Button";
+import BackButton from "../../atoms/backButton/BackButton"
 
 import convertToEmoji from "../../../../convertToEmoji";
-import useUrlPosition from "../../../hooks/useUrlPosition";
+import { useUrlPosition } from "../../../hooks/useUrlPosition";
+import { useCities } from "../../../contexts/CitiesContext";
 import Message from "../../atoms/message/Message";
 import Spinner from "../../atoms/spinner/Spinner";
+
+const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 const Form = () => {
   const navigate = useNavigate();
 
-  const { lat, lng } = useUrlPosition();
+  const [lat, lng] = useUrlPosition();
+  const { createCity, isLoading } = useCities();
 
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState("");
@@ -21,27 +26,31 @@ const Form = () => {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
-  const [geocodingError, setGeocodingError] = useState("")
-
-  const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
+  const [geocodingError, setGeocodingError] = useState("");
 
   useEffect(() => {
+    if (!lat || !lng) return;
+
     const fetchCityData = async () => {
       try {
         setIsLoadingGeocoding(true);
-        setGeocodingError("")
-        const response = await fetch(`${BASE_URL}?latitude=${lat}&longitude${lng}`);
+        setGeocodingError("");
+        const response = await fetch(
+          `${BASE_URL}?latitude=${lat}&longitude${lng}`
+        );
         const data = await response.json();
 
         if (!data.countryCode) {
-          throw new Error("That doesn't seem to be a city. Click somewhere else 😊");
+          throw new Error(
+            "That doesn't seem to be a city. Click somewhere else 😊"
+          );
         }
 
         setCityName(data.city || data.locality || "");
         setCountry(data.countryName);
         setEmoji(convertToEmoji(data.countryCode));
       } catch (err) {
-        setGeocodingError(err.message)
+        setGeocodingError(err.message);
       } finally {
         setIsLoadingGeocoding(false);
       }
@@ -49,12 +58,38 @@ const Form = () => {
     fetchCityData();
   }, [lat, lng]);
 
-  if (isLoadingGeocoding) return <Spinner />
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if(geocodingError) return <Message message={geocodingError} />
+    if (!cityName || !date) return;
+
+    const newCity = {
+      cityName,
+      country,
+      date,
+      emoji,
+      notes,
+      position: {
+        lat,
+        lng,
+      },
+    };
+
+    await createCity(newCity);
+    navigate("/app/cities");
+  };
+
+  if (isLoadingGeocoding) return <Spinner />;
+
+  if (!lat && !lng)
+    return <Message message="Start by clicking somewhere on the map" />;
+
+  if (geocodingError) return <Message message={geocodingError} />;
 
   return (
-    <form className="form">
+    <form
+      className={`form ${isLoading ? "loading" : ""}`}
+      onSubmit={handleSubmit}>
       <div className="row">
         <label htmlFor="cityName">City name</label>
         <input
@@ -85,14 +120,7 @@ const Form = () => {
 
       <div className="buttons">
         <Button type="primary">Add</Button>
-        <Button
-          type="back"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate(-1);
-          }}>
-          &larr; Back
-        </Button>
+        <BackButton />
       </div>
     </form>
   );

@@ -47,7 +47,7 @@ const Map = () => {
     <div className="mapContainer">
       {!geolocationPosition && (
         <Button type="position" onClick={getPosition}>
-          {isLoadingPosition ? "Loading" : "Use your location"}
+          {isLoadingPosition ? "Loading..." : "Use your location"}
         </Button>
       )}
       <MapContainer

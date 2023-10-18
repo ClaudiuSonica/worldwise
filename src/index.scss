@@ -1,5 +1,7 @@
 @import "./scss/variables";
 
+@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+
 .cta:link,
 .cta:visited {
   display: inline-block;

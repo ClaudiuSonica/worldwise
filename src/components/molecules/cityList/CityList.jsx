@@ -4,7 +4,12 @@ import CityItem from "../../atoms/cityItem/CityItem";
 import Message from "../../atoms/message/Message";
 import "./CityList.scss";
 
-const CityList = ({ cities, isLoading }) => {
+import { useCities } from "../../../contexts/CitiesContext";
+
+const CityList = () => {
+
+  const { cities, isLoading } = useCities();
+
   if (isLoading) return <Spinner />;
 
   if (!cities.length)

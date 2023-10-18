@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Spinner from "../../atoms/spinner/Spinner";
-import CityItem from "../../atoms/cityItem/CityItem";
+import CityItem from "../cityItem/CityItem";
 import Message from "../../atoms/message/Message";
 import "./CityList.scss";
 

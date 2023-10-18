@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Spinner from "../../atoms/spinner/Spinner";
-import CountryItem from "../../atoms/countryItem/CountryItem";
+import CountryItem from "../countryItem/CountryItem";
 import Message from "../../atoms/message/Message";
 import "./CountriesList.scss";
 
